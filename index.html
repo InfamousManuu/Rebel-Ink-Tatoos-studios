@@ -1,0 +1,2304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rebel Ink Tattoos | Custom Tattoo Services USA</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0b1c2c; --navy2: #1e3a5f; --blue: #3b82f6;
+  --cream: #f8fafc; --text: #334155; --muted: #64748b;
+  --accent: #f59e0b; --green: #10b981; --border: #e2e8f0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--cream); color: var(--text); line-height: 1.55; min-height: 100vh; }
+.page { display: none; min-height: 100vh; }
+.page.active { display: block; }
+a { text-decoration: none; color: inherit; cursor: pointer; }
+img { max-width: 100%; display: block; }
+
+.header {
+  background: var(--navy); color: white; padding: 0.85rem 1.4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1.1rem; cursor: pointer; }
+.logo-icon {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-svg { display: block; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.nav { display: flex; gap: 0.35rem; align-items: center; flex-wrap: wrap; }
+.nav a, .nav button {
+  color: rgba(255,255,255,0.9); background: transparent; border: 1px solid rgba(255,255,255,0.18);
+  padding: 0.4rem 0.9rem; border-radius: 999px; font-size: 0.82rem; font-weight: 500;
+  cursor: pointer; font-family: inherit;
+}
+.nav a:hover, .nav button:hover { background: rgba(255,255,255,0.12); }
+.btn-reg { background: rgba(255,255,255,0.12) !important; font-weight: 600 !important; }
+
+.hero {
+  background: linear-gradient(145deg, #0b1c2c 0%, #1e3a5f 55%, #1e40af 100%);
+  color: white; padding: 3.5rem 1.5rem 4rem;
+}
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 5vw, 2.9rem); font-weight: 700; line-height: 1.15; margin-bottom: 1rem; max-width: 640px;
+}
+.hero p { font-size: 1.05rem; opacity: 0.92; max-width: 500px; margin-bottom: 1.6rem; }
+.hero-btns { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+.btn {
+  padding: 0.7rem 1.35rem; border-radius: 9px; font-weight: 600; font-size: 0.92rem;
+  border: none; cursor: pointer; font-family: inherit; display: inline-flex; align-items: center; justify-content: center;
+}
+.btn-primary { background: var(--navy2); color: white; }
+.btn-primary:hover { background: #152a45; }
+.btn-accent { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+.btn-outline { background: white; border: 1.5px solid var(--border); color: var(--navy2); }
+.btn-block { width: 100%; }
+.btn-lg { padding: 0.85rem 1.6rem; font-size: 1rem; }
+.btn-sm { padding: 0.4rem 0.85rem; font-size: 0.82rem; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.3rem; }
+section { padding: 3.2rem 1.3rem; }
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.85rem; color: var(--navy); margin-bottom: 0.5rem; text-align: center;
+}
+.section-desc { text-align: center; color: var(--muted); max-width: 520px; margin: 0 auto 2rem; }
+
+.svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+.svc-card {
+  background: white; border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+  transition: 0.2s; cursor: pointer;
+}
+.svc-card:hover { box-shadow: 0 10px 30px rgba(11,28,44,0.1); transform: translateY(-2px); }
+.svc-img {
+  height: 160px; background: #e2e8f0; background-size: cover; background-position: center; position: relative;
+}
+.svc-img .tag {
+  position: absolute; bottom: 10px; left: 10px;
+  background: rgba(11,28,44,0.85); color: white; font-size: 0.72rem;
+  padding: 0.25rem 0.6rem; border-radius: 6px; font-weight: 600;
+}
+.svc-body { padding: 1.15rem 1.2rem 1.3rem; }
+.svc-body h3 { font-size: 1.05rem; color: var(--navy); margin-bottom: 0.35rem; }
+.svc-body p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.7rem; }
+.svc-price { font-size: 1.15rem; font-weight: 800; color: var(--navy2); margin-bottom: 0.8rem; }
+.svc-price span { font-size: 0.78rem; font-weight: 500; color: var(--muted); }
+
+/* Service detail */
+.page-hero {
+  background: linear-gradient(145deg, #0b1c2c, #1e3a5f); color: white;
+  padding: 2.5rem 1.3rem 2.8rem;
+}
+.page-hero h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.6rem, 4vw, 2.3rem); margin-bottom: 0.5rem; }
+.page-hero p { opacity: 0.9; max-width: 560px; }
+.detail-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; }
+@media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } }
+.detail-img {
+  height: 280px; border-radius: 14px; background-size: cover; background-position: center; background-color: #e2e8f0;
+}
+.tier-card {
+  background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.2rem; margin-bottom: 0.8rem;
+}
+.tier-card h4 { color: var(--navy); margin-bottom: 0.25rem; font-size: 0.98rem; }
+.tier-price { font-weight: 800; color: var(--navy2); font-size: 1.1rem; margin-bottom: 0.4rem; }
+.tier-card p { font-size: 0.88rem; color: var(--muted); }
+.process-steps { display: flex; flex-direction: column; gap: 0.7rem; }
+.process-step {
+  display: flex; gap: 0.9rem; align-items: flex-start;
+  background: white; border: 1px solid var(--border); border-radius: 10px; padding: 0.9rem 1rem;
+}
+.process-num {
+  width: 32px; height: 32px; background: var(--navy2); color: white; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0;
+}
+.info-box {
+  background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 12px; padding: 1rem 1.2rem; margin: 1rem 0;
+  font-size: 0.9rem;
+}
+.info-box strong { color: var(--navy); }
+
+/* Auth */
+.auth-wrap {
+  min-height: calc(100vh - 60px); display: flex; align-items: center; justify-content: center;
+  padding: 2rem 1rem; background: linear-gradient(135deg, #f8fafc 0%, #e8eef5 100%);
+}
+.auth-card {
+  background: white; border-radius: 16px; box-shadow: 0 20px 50px rgba(11,28,44,0.1);
+  width: 100%; max-width: 440px; padding: 2.2rem 1.7rem; border: 1px solid var(--border);
+}
+.auth-card h1 { font-family: 'Playfair Display', Georgia, serif; font-size: 1.7rem; color: var(--navy); margin-bottom: 0.3rem; }
+.auth-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.4rem; }
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-size: 0.84rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 0.7rem 0.9rem; border: 1.5px solid var(--border);
+  border-radius: 9px; font-size: 0.92rem; font-family: inherit; background: #fafbfc;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none; border-color: var(--navy2); background: white;
+}
+.row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.error-msg {
+  background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c;
+  padding: 0.6rem 0.85rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 0.9rem; display: none;
+}
+.switch-text { text-align: center; font-size: 0.88rem; color: var(--muted); margin-top: 1.2rem; }
+.switch-text a { color: var(--navy2); font-weight: 600; cursor: pointer; }
+.pw-hint { font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; }
+
+.dash-main { max-width: 1100px; margin: 0 auto; padding: 1.6rem 1.2rem 3rem; }
+.user-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #8b7355; font-weight: 600; }
+.user-name { font-family: 'Playfair Display', Georgia, serif; font-size: 1.9rem; color: var(--navy); }
+.cards-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.9rem; margin: 1.3rem 0; }
+.stat-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1rem; }
+.stat-card .label { font-size: 0.78rem; color: var(--muted); }
+.stat-card .value { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-top: 0.2rem; }
+.panel {
+  background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.2rem;
+}
+.panel-title { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.9rem; }
+
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th {
+  text-align: left; padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--border);
+  color: var(--muted); font-weight: 600; font-size: 0.72rem; text-transform: uppercase;
+}
+td { padding: 0.7rem 0.5rem; border-bottom: 1px solid #f1f5f9; vertical-align: top; }
+.badge { display: inline-block; padding: 0.15rem 0.45rem; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
+.badge-pending { background: #fef3c7; color: #92400e; }
+
+.footer {
+  background: var(--navy); color: rgba(255,255,255,0.75); padding: 2rem 1.3rem; font-size: 0.85rem;
+}
+.footer a { color: #93c5fd; }
+
+.float-contact {
+  position: fixed; bottom: 20px; right: 20px; z-index: 90;
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+}
+.float-btn {
+  padding: 0.65rem 1.1rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+  color: white; box-shadow: 0 6px 18px rgba(0,0,0,0.2); border: none; cursor: pointer;
+}
+.float-wa { background: #25D366; }
+.float-call { background: var(--navy2); }
+
+.back-link { color: var(--blue); font-weight: 600; font-size: 0.9rem; margin-bottom: 1rem; display: inline-block; cursor: pointer; }
+.back-link:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .nav { display: none; }
+  .row-2 { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 1.8rem; }
+}
+
+.rating-banner {
+  display: flex; align-items: center; justify-content: center; gap: 0.75rem; flex-wrap: wrap;
+  background: white; border: 1px solid var(--border); border-radius: 12px;
+  padding: 0.9rem 1.2rem; margin: 0 auto 1.8rem; max-width: 480px;
+}
+.stars { color: #f59e0b; font-size: 1.25rem; letter-spacing: 2px; }
+.rating-text { font-size: 0.92rem; color: var(--text); }
+.rating-text strong { color: var(--navy); }
+.tier-card { cursor: pointer; transition: 0.15s; }
+.tier-card:hover { border-color: var(--blue); box-shadow: 0 4px 14px rgba(30,58,95,0.1); }
+.tier-gallery {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.7rem; margin: 1rem 0;
+}
+.tier-gallery div {
+  height: 110px; border-radius: 10px; background: #e2e8f0 center/cover no-repeat;
+}
+.testimonial-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;
+}
+.testimonial-card {
+  background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.15rem 1.2rem;
+}
+.testimonial-card .stars-sm { color: #f59e0b; font-size: 0.9rem; margin-bottom: 0.4rem; }
+.testimonial-card .quote { font-size: 0.9rem; color: var(--text); margin-bottom: 0.7rem; font-style: italic; }
+.testimonial-card .who { font-size: 0.82rem; font-weight: 600; color: var(--navy); }
+.testimonial-card .where { font-size: 0.78rem; color: var(--muted); }
+
+
+.svc-img, .detail-img, .tier-gallery div {
+  background-color: #e8eef5;
+}
+.tier-gallery div {
+  border: 1px solid #e2e8f0;
+}
+.svc-img img, .detail-img img, .tier-gallery img {
+  background: #e8eef5;
+}
+
+
+
+/* Mobile hamburger */
+.menu-btn {
+  display: none; background: transparent; border: 1px solid rgba(255,255,255,0.3);
+  color: white; padding: 0.4rem 0.7rem; border-radius: 8px; font-size: 1.1rem; cursor: pointer;
+}
+.nav.open { display: flex !important; flex-direction: column; position: absolute; top: 56px; right: 12px;
+  background: var(--navy); padding: 0.8rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3); z-index: 200; min-width: 180px; }
+@media (max-width: 700px) {
+  .menu-btn { display: block; }
+  .nav { display: none; }
+  .nav.open { display: flex !important; }
+}
+/* How it works */
+.steps-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.step-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; text-align: center; }
+.step-card .num { width: 40px; height: 40px; margin: 0 auto 0.7rem; background: var(--navy2); color: white;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+/* Before after */
+.ba-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
+.ba-card { background: white; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.ba-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.ba-pair img { width: 100%; height: 140px; object-fit: cover; background: #1e3a5f; }
+.ba-labels { display: grid; grid-template-columns: 1fr 1fr; font-size: 0.72rem; text-align: center;
+  background: #f1f5f9; color: var(--muted); padding: 0.3rem; font-weight: 600; }
+.ba-body { padding: 0.9rem 1rem; }
+.ba-body h4 { color: var(--navy); font-size: 0.95rem; margin-bottom: 0.25rem; }
+/* Providers */
+.prov-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.prov-card { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; }
+.prov-card h4 { color: var(--navy); margin-bottom: 0.3rem; }
+.prov-card .meta { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.6rem; }
+/* FAQ */
+.faq-item { background: white; border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.6rem; overflow: hidden; }
+.faq-q { padding: 0.9rem 1.1rem; font-weight: 600; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; }
+.faq-a { display: none; padding: 0 1.1rem 0.9rem; font-size: 0.9rem; color: var(--muted); }
+.faq-item.open .faq-a { display: block; }
+/* Compare table */
+.compare-wrap { overflow-x: auto; }
+.compare-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: white; border-radius: 12px; overflow: hidden; }
+.compare-table th, .compare-table td { padding: 0.75rem 0.9rem; border-bottom: 1px solid var(--border); text-align: left; }
+.compare-table th { background: var(--navy); color: white; font-weight: 600; }
+/* Lang */
+.lang-btn { font-size: 0.75rem !important; padding: 0.3rem 0.6rem !important; }
+.admin-note { width: 100%; min-height: 50px; font-size: 0.8rem; padding: 0.4rem; border: 1px solid var(--border); border-radius: 6px; font-family: inherit; }
+.status-select { font-size: 0.78rem; padding: 0.25rem 0.4rem; border-radius: 6px; border: 1px solid var(--border); }
+
+
+/* Accessibility */
+body.a11y-large { font-size: 112%; }
+body.a11y-large .hero h1, body.a11y-large .section-title, body.a11y-large .user-name { font-size: 1.15em; }
+body.a11y-large .btn { padding: 0.85rem 1.4rem; }
+:focus-visible { outline: 3px solid #3b82f6 !important; outline-offset: 2px; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 3px solid #3b82f6 !important; outline-offset: 2px;
+}
+.a11y-bar {
+  position: fixed; bottom: 20px; left: 20px; z-index: 95;
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.a11y-bar button {
+  background: white; border: 1.5px solid var(--border); color: var(--navy);
+  padding: 0.45rem 0.7rem; border-radius: 8px; font-size: 0.78rem; font-weight: 600;
+  cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.08); font-family: inherit;
+}
+.a11y-bar button:hover { border-color: var(--blue); }
+.a11y-bar button.active { background: var(--navy2); color: white; border-color: var(--navy2); }
+/* Chat widget */
+.chat-widget {
+  position: fixed; bottom: 90px; right: 20px; z-index: 94;
+}
+.chat-toggle {
+  background: linear-gradient(135deg, #1e3a5f, #3b82f6); color: white;
+  border: none; border-radius: 50px; padding: 0.75rem 1.2rem; font-weight: 600;
+  font-size: 0.9rem; cursor: pointer; box-shadow: 0 8px 24px rgba(30,58,95,0.35);
+  font-family: inherit; display: flex; align-items: center; gap: 0.4rem;
+}
+.chat-panel {
+  display: none; position: absolute; bottom: 56px; right: 0;
+  width: 300px; max-width: calc(100vw - 40px);
+  background: white; border-radius: 14px; border: 1px solid var(--border);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.15); overflow: hidden;
+}
+.chat-panel.open { display: block; }
+.chat-head {
+  background: var(--navy); color: white; padding: 0.85rem 1rem; font-weight: 600; font-size: 0.92rem;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.chat-head button { background: transparent; border: none; color: white; font-size: 1.1rem; cursor: pointer; }
+.chat-body { padding: 1rem; font-size: 0.88rem; color: var(--text); max-height: 220px; }
+.chat-body p { margin-bottom: 0.6rem; color: var(--muted); }
+.chat-actions { padding: 0 1rem 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.note-box {
+  background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+  padding: 0.85rem 1rem; font-size: 0.85rem; color: #92400e; margin: 1rem 0;
+}
+.photo-preview {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;
+}
+.photo-preview img {
+  width: 72px; height: 72px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border);
+}
+
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="page-landing" class="page active">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <button class="menu-btn" onclick="toggleMenu(this)">☰</button>
+    <nav class="nav">
+      <a onclick="showPage('services-list')">Services</a>
+      <a onclick="showPage('before-after')">Before/After</a>
+      <a onclick="showPage('faq')">FAQ</a>
+      <a onclick="showPage('providers')">Providers</a>
+      <button class="lang-btn" onclick="toggleLang()">EN/ES</button>
+      <button onclick="showPage('login')">Login</button>
+      <button class="btn-reg" onclick="showPage('register')">Create Account</button>
+      <button onclick="showPage('admin-login')">Admin</button>
+    </nav>
+  </header>
+  <section class="hero">
+    <div class="container">
+      <span style="display:inline-block;background:rgba(255,255,255,0.15);padding:0.3rem 0.85rem;border-radius:20px;font-size:0.78rem;font-weight:600;margin-bottom:1rem;">USA · Professional Tattoo Services</span>
+      <h1>Custom Tattoos, Cover-Ups & Laser Removal — All in One Place</h1>
+      <p>Looking for custom tattoos, cover-ups, paramedical tattooing, or laser removal? Create an account, explore transparent US pricing from lowest to highest, and book with top specialists.</p>
+      <div class="hero-btns">
+        <button class="btn btn-accent btn-lg" onclick="showPage('register')">Create Free Account →</button>
+        <button class="btn" style="background:transparent;border:1.5px solid rgba(255,255,255,0.5);color:white;" onclick="showPage('login')">Login</button>
+        <button class="btn" style="background:transparent;border:1.5px solid rgba(255,255,255,0.5);color:white;" onclick="showPage('services-list')">Browse Services</button>
+      </div>
+      <p style="margin-top:1.4rem;font-size:0.95rem;">📞 <a href="tel:+14025175821" style="color:#fbbf24;font-weight:700;">+1 (402) 517-5821</a></p>
+    </div>
+  </section>
+  <section>
+    <div class="container">
+      <h2 class="section-title">Services (Cheapest → Most Advanced)</h2>
+      <p class="section-desc">Click any service for full details, process, time, and price tiers.</p>
+      <div class="svc-grid" id="landingServices"></div>
+    </div>
+  </section>
+
+  
+  <section style="background:#fff;padding:3rem 1.3rem;">
+    <div class="container">
+      <h2 class="section-title" data-i18n="howTitle">How it works</h2>
+      <p class="section-desc" data-i18n="howDesc">From first question to treatment — simple steps.</p>
+      <div class="steps-row">
+        <div class="step-card"><div class="num">1</div><strong data-i18n="step1t">Create account</strong><p style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;" data-i18n="step1d">Register with name, phone, and location.</p></div>
+        <div class="step-card"><div class="num">2</div><strong data-i18n="step2t">Explore services</strong><p style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;" data-i18n="step2d">Compare prices, process, and time for each option.</p></div>
+        <div class="step-card"><div class="num">3</div><strong data-i18n="step3t">Book consult</strong><p style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;" data-i18n="step3d">Describe your case. We review within 1–2 days.</p></div>
+        <div class="step-card"><div class="num">4</div><strong data-i18n="step4t">Get treated</strong><p style="font-size:0.85rem;color:var(--muted);margin-top:0.4rem;" data-i18n="step4d">Work with a matched specialist for your plan.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:3rem 1.3rem;background:#f8fafc;">
+    <div class="container">
+      <h2 class="section-title" data-i18n="cmpTitle">Quick comparison</h2>
+      <p class="section-desc" data-i18n="cmpDesc">Side-by-side view of common options.</p>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead><tr><th>Option</th><th>Best for</th><th>Typical US cost</th><th>Time</th><th>Invasive?</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Free consultation</strong></td><td>Clarity before spending</td><td>Free</td><td>1–2 days reply</td><td>No</td></tr>
+            <tr><td><strong>Laser tattoo removal</strong></td><td>Unwanted ink</td><td>$75–$1,000+/session</td><td>Months (multi-session)</td><td>Minimal</td></tr>
+            <tr><td><strong>Custom tattoo</strong></td><td>New body art</td><td>$100–$1,500+</td><td>45 min – full day</td><td>Minimal</td></tr>
+            <tr><td><strong>Tattoo cover-up</strong></td><td>Old or unwanted designs</td><td>$200–$2,000+</td><td>1–3 sessions</td><td>Minimal</td></tr>
+            <tr><td><strong>Paramedical tattooing</strong></td><td>Scars, stretch marks, restoration</td><td>$400–$5,000+</td><td>1–3 sessions</td><td>Minimal</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="text-align:center;margin-top:1.2rem;">
+        <button class="btn btn-outline" onclick="showPage('faq')">FAQ</button>
+        <button class="btn btn-outline" onclick="showPage('before-after')">Before & After</button>
+        <button class="btn btn-outline" onclick="showPage('providers')">Providers</button>
+      </p>
+    </div>
+  </section>
+
+  <section style="background:#f0f4f8;padding:2.5rem 1.3rem;">
+    <div class="container">
+      <div class="rating-banner">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text"><strong>5.0</strong> · <strong>300+</strong> positive reviews from clients across the USA</span>
+      </div>
+      <h2 class="section-title">What clients say</h2>
+      <p class="section-desc">Real feedback from people who used Rebel Ink for custom tattoos, cover-ups, removal, and paramedical work.</p>
+      <div class="testimonial-grid" id="landingTestimonials"></div>
+    </div>
+  </section>
+
+
+  <section style="padding:2rem 1.3rem;background:#fffbeb;">
+    <div class="container" style="max-width:720px;margin:0 auto;">
+      <div class="note-box" style="margin:0;">
+        <strong>Insurance &amp; financing:</strong>
+        Tattoo work, laser removal, cover-ups, and paramedical tattooing are typically <strong>not covered</strong> by health insurance in the USA.
+        Some clinics offer payment plans or third-party financing — ask during your consultation. Always confirm costs in writing before treatment.
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div class="container" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+      <div>© 2026 Rebel Ink Tattoos</div>
+      <div><a href="tel:+14025175821">+1 (402) 517-5821</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES LIST (sorted) -->
+<div id="page-services-list" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav">
+      <a onclick="showPage('landing')">Home</a>
+      <button onclick="showPage('login')">Login</button>
+      <button class="btn-reg" onclick="showPage('register')">Create Account</button>
+    </nav>
+  </header>
+  <div class="page-hero">
+    <div class="container">
+      <h1>All Services — Lowest to Highest Price</h1>
+      <p>Click a service to see explanation, process steps, time required, and full pricing tiers.</p>
+    </div>
+  </div>
+  <section>
+    <div class="container">
+      <div class="svc-grid" id="allServices"></div>
+    </div>
+  </section>
+</div>
+
+<!-- SERVICE DETAIL -->
+<div id="page-service-detail" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav">
+      <a onclick="showPage('services-list')">All Services</a>
+      <button onclick="goBookFromDetail()">Book This</button>
+      <button onclick="showPage('login')">Login</button>
+    </nav>
+  </header>
+  <div id="serviceDetailContent"></div>
+</div>
+
+
+<!-- TIER DETAIL -->
+<div id="page-tier-detail" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad2)"/>
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav">
+      <a onclick="showPage('services-list')">Services</a>
+      <button onclick="goBookFromTier()">Book This</button>
+      <button onclick="showPage('login')">Login</button>
+    </nav>
+  </header>
+  <div id="tierDetailContent"></div>
+</div>
+
+
+<!-- FAQ -->
+<div id="page-faq" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon">RI</div> Rebel Ink Tattoos</div>
+    <button class="menu-btn" onclick="toggleMenu(this)">☰</button>
+    <nav class="nav">
+      <a onclick="showPage('landing')">Home</a>
+      <a onclick="showPage('services-list')">Services</a>
+      <button onclick="showPage('login')">Login</button>
+    </nav>
+  </header>
+  <div class="page-hero"><div class="container"><h1 data-i18n="faqTitle">Frequently asked questions</h1><p data-i18n="faqSub">Straight answers on cost, pain, sessions, and recovery.</p></div></div>
+  <section><div class="container" style="max-width:720px;" id="faqList"></div></section>
+</div>
+
+<!-- BEFORE AFTER -->
+<div id="page-before-after" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon">RI</div> Rebel Ink Tattoos</div>
+    <button class="menu-btn" onclick="toggleMenu(this)">☰</button>
+    <nav class="nav">
+      <a onclick="showPage('landing')">Home</a>
+      <a onclick="showPage('services-list')">Services</a>
+      <button onclick="showPage('login')">Login</button>
+    </nav>
+  </header>
+  <div class="page-hero"><div class="container"><h1 data-i18n="baTitle">Before & After</h1><p data-i18n="baSub">Example outcomes for tattoos, cover-ups, removal, and paramedical work. Results vary by individual.</p></div></div>
+  <section><div class="container"><div class="ba-grid" id="baGrid"></div></div></section>
+</div>
+
+<!-- PROVIDERS -->
+<div id="page-providers" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon">RI</div> Rebel Ink Tattoos</div>
+    <button class="menu-btn" onclick="toggleMenu(this)">☰</button>
+    <nav class="nav">
+      <a onclick="showPage('landing')">Home</a>
+      <a onclick="showPage('services-list')">Services</a>
+      <button onclick="showPage('login')">Login</button>
+    </nav>
+  </header>
+  <div class="page-hero"><div class="container"><h1 data-i18n="provTitle">Provider directory</h1><p data-i18n="provSub">Example specialists and studios across the USA. Contact us to be matched for your case.</p></div></div>
+  <section><div class="container"><div class="prov-grid" id="provGrid"></div>
+    <p style="margin-top:1.5rem;text-align:center;">Need a match? Call <a href="tel:+14025175821" style="color:var(--blue);font-weight:700;">+1 (402) 517-5821</a> or book in your portal.</p>
+  </div></section>
+</div>
+
+<!-- REGISTER -->
+<div id="page-register" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav"><button onclick="showPage('login')">Login</button></nav>
+  </header>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Create Account</h1>
+      <p class="auth-sub">Name, phone, country & secure password</p>
+      <div class="error-msg" id="regError"></div>
+      <form onsubmit="handleRegister(event)">
+        <div class="form-group"><label>Full Name *</label><input type="text" id="regName" required placeholder="Your full name"></div>
+        <div class="form-group"><label>Phone Number *</label><input type="tel" id="regPhone" required placeholder="+1 (402) 517-5821"></div>
+        <div class="form-group">
+          <label>Country *</label>
+          <select id="regCountry" required onchange="toggleState()">
+            <option value="">Select country</option>
+            <option value="United States">United States</option>
+            <option value="Canada">Canada</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div class="form-group" id="stateGroup" style="display:none;">
+          <label>State (USA) *</label>
+          <select id="regState">
+            <option value="">Select state</option>
+            <option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option>
+            <option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option>
+            <option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option>
+            <option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option>
+            <option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option>
+            <option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
+            <option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option>
+            <option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option>
+            <option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
+            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option>
+            <option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option>
+            <option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option>
+            <option>Wisconsin</option><option>Wyoming</option><option>District of Columbia</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" id="regEmail" required placeholder="you@email.com"></div>
+        <div class="form-group">
+          <label>Password *</label>
+          <input type="password" id="regPassword" required placeholder="Create password" minlength="8">
+          <p class="pw-hint">Letters + numbers + special character (e.g. !@#$%), min 8 characters</p>
+        </div>
+        <div class="form-group"><label>Confirm Password *</label><input type="password" id="regConfirm" required placeholder="Confirm password"></div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Create Account →</button>
+      </form>
+      <p class="switch-text">Already have an account? <a onclick="showPage('login')">Login</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="page-login" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav"><button onclick="showPage('register')">Register</button></nav>
+  </header>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Member Login</h1>
+      <p class="auth-sub">Access services, profile & book appointments</p>
+      <div class="error-msg" id="loginError"></div>
+      <form onsubmit="handleLogin(event)">
+        <div class="form-group"><label>Email</label><input type="email" id="loginEmail" required placeholder="you@email.com"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="loginPassword" required placeholder="Your password"></div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Login →</button>
+      </form>
+      <p class="switch-text"><a onclick="showPage('reset')">Forgot password?</a></p><p class="switch-text">No account? <a onclick="showPage('register')">Create one</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- MEMBER DASHBOARD -->
+<div id="page-dashboard" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('dashboard')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav">
+      <button onclick="showPage('dashboard')">Portal</button>
+      <button onclick="showPage('profile')">My Profile</button>
+      <button onclick="showPage('services-list')">Services</button>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+  <div class="dash-main">
+    <div class="user-label">MEMBER PORTAL</div>
+    <h1 class="user-name" id="dashName">Member</h1>
+    <p style="color:var(--muted);font-size:0.9rem;" id="dashMeta"></p>
+    <div class="cards-row">
+      <div class="stat-card"><div class="label">Phone</div><div class="value" id="dashPhone" style="font-size:0.95rem;">—</div></div>
+      <div class="stat-card"><div class="label">Location</div><div class="value" id="dashLocation" style="font-size:0.95rem;">—</div></div>
+      <div class="stat-card"><div class="label">Appointments</div><div class="value" id="dashAppts">0</div></div>
+      <div class="stat-card"><div class="label">Profile</div><div class="value"><button class="btn btn-outline btn-sm" onclick="showPage('profile')">View Profile</button></div></div>
+    </div>
+
+    <div id="accountStatusNotice" class="panel" style="border-left:4px solid var(--blue);">
+      <div class="panel-title">Account status</div>
+      <div id="accountStatusText" style="color:var(--muted);">Checking your account status…</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">📋 Services (click for full details — cheapest first)</div>
+      <div class="svc-grid" id="dashServices"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">📅 Book an Appointment</div>
+      <div class="note-box" id="insuranceNoteBook">
+        <strong>Note:</strong> These services are usually cosmetic and not covered by insurance. Ask about financing at consult.
+      </div>
+      <form id="bookForm" onsubmit="return handleBook(event)">
+        <div class="row-2">
+          <div class="form-group">
+            <label>Service *</label>
+            <select id="bookService" required>
+              <option value="">Select service</option>
+            </select>
+          </div>
+          <div class="form-group"><label>Preferred date</label><input type="date" id="bookDate"></div>
+        </div>
+        <div class="form-group">
+          <label>Describe your problem / goals *</label>
+          <textarea id="bookProblem" required rows="3" name="problem" placeholder="e.g. Old tribal tattoo cover-up, laser removal of name, paramedical scar camouflage..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Photos (optional)</label>
+          <input type="file" id="bookPhotos" accept="image/*" multiple style="font-size:0.88rem;">
+          <p class="pw-hint">Up to 5 images of tattoos, scars, or areas to treat. Stored securely with your appointment request for admin review. The server keeps your booking data available across devices.</p>
+          <div class="photo-preview" id="photoPreview"></div>
+        </div>
+        <button type="submit" class="btn btn-accent">Submit Booking Request</button>
+      </form>
+      <div id="bookSuccess" style="display:none;margin-top:1rem;padding:0.8rem;background:#ecfdf5;border-radius:8px;color:#065f46;">
+        ✓ Booking submitted. Admin can see your case. We will contact you.
+      </div>
+    </div>
+
+    <div id="appointmentNotice" class="panel" style="display:none;border-left:4px solid #16a34a;">
+      <div class="panel-title">Appointment update</div>
+      <div id="appointmentNoticeText"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">Your Booking History</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Service</th><th>Problem</th><th>Status</th></tr></thead>
+          <tbody id="memberBookings"><tr><td colspan="4" style="color:#9ca3af;text-align:center;">No bookings yet</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">★ Client rating</div>
+      <div class="rating-banner" style="margin:0 0 1rem 0; max-width:100%;">
+        <span class="stars">★★★★★</span>
+        <span class="rating-text"><strong>5.0</strong> average · <strong>300+</strong> positive reviews nationwide</span>
+      </div>
+      <div class="testimonial-grid" id="dashTestimonials"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div id="page-profile" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('dashboard')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav">
+      <button onclick="showPage('dashboard')">Portal</button>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  </header>
+  <div class="dash-main">
+    <div class="user-label">MY PROFILE</div>
+    <h1 class="user-name">Account Details</h1>
+    <div class="panel" style="max-width:520px;margin-top:1.2rem;">
+      <div class="form-group"><label>Full Name</label><div id="profName" style="font-weight:600;color:var(--navy);">—</div></div>
+      <div class="form-group"><label>Email</label><div id="profEmail">—</div></div>
+      <div class="form-group"><label>Phone</label><div id="profPhone">—</div></div>
+      <div class="form-group"><label>Country</label><div id="profCountry">—</div></div>
+      <div class="form-group"><label>State</label><div id="profState">—</div></div>
+      <div class="form-group">
+        <label>Password</label>
+        <div style="display:flex;align-items:center;gap:0.8rem;">
+          <span id="profPw" style="font-family:monospace;">••••••••</span>
+          <button class="btn btn-outline btn-sm" type="button" onclick="toggleProfPw()">Show / Hide</button>
+        </div>
+      </div>
+      <div class="form-group"><label>Member since</label><div id="profJoined">—</div></div>
+      <button class="btn btn-primary" onclick="showPage('dashboard')" style="margin-top:0.5rem;">← Back to Portal</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- RESET PASSWORD -->
+<div id="page-reset" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon">RI</div> Rebel Ink Tattoos</div>
+  </header>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Reset password</h1>
+      <p class="auth-sub">Password recovery is protected on the server. Contact the administrator if self-service recovery is unavailable.</p>
+      <div class="error-msg" id="resetError"></div>
+      <div class="success-msg" id="resetSuccess" style="display:none;background:#ecfdf5;border:1px solid #a7f3d0;color:#065f46;padding:0.6rem 0.85rem;border-radius:8px;font-size:0.85rem;margin-bottom:0.9rem;"></div>
+      <form onsubmit="handleReset(event)">
+        <div class="form-group"><label>Email</label><input type="email" id="resetEmail" required></div>
+        <div class="form-group"><label>New password</label><input type="password" id="resetPw" required minlength="8"><p class="pw-hint">Letters + numbers + special character</p></div>
+        <div class="form-group"><label>Confirm new password</label><input type="password" id="resetPw2" required></div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Update password</button>
+      </form>
+      <p class="switch-text"><a onclick="showPage('login')">← Back to login</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN LOGIN -->
+<div id="page-admin-login" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+  </header>
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <h1>Admin Login</h1>
+      <p class="auth-sub">Manage members & view cases</p>
+      <div class="error-msg" id="adminError"></div>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group"><label>Admin email</label><input type="email" id="adminEmail" required placeholder="Your admin email"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="adminPassword" required></div>
+        <button type="submit" class="btn btn-primary btn-block btn-lg">Enter Admin Panel →</button>
+      </form>
+      <p class="switch-text"><a onclick="showPage('landing')">← Back</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="page-admin" class="page">
+  <header class="header">
+    <div class="logo" onclick="showPage('landing')"><div class="logo-icon"><svg class="logo-svg" viewBox="0 0 40 40" width="36" height="36" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="hiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a5f"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="40" height="40" rx="10" fill="url(#hiGrad)"/>
+  <!-- stylized hairline / scalp arc -->
+  <path d="M8 26c2.5-8 6.5-12 12-12s9.5 4 12 12" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- follicle dots -->
+  <circle cx="14" cy="18" r="1.4" fill="#93c5fd"/>
+  <circle cx="20" cy="15.5" r="1.4" fill="#fff"/>
+  <circle cx="26" cy="18" r="1.4" fill="#93c5fd"/>
+  <!-- ink mark under -->
+  <path d="M16 28h8" stroke="#fbbf24" stroke-width="2.2" stroke-linecap="round"/>
+</svg></div> Rebel Ink Tattoos</div>
+    <nav class="nav">
+      <button class="btn-reg">Admin</button>
+      <button onclick="adminLogout()">Logout</button>
+    </nav>
+  </header>
+  <div class="dash-main">
+    <div class="user-label">🛡️ ADMIN PANEL · Auto-refresh every 10s</div>
+    <h1 class="user-name" style="font-size:1.6rem;">Members & Cases</h1>
+    <div class="cards-row">
+      <div class="stat-card"><div class="label">Total members</div><div class="value" id="adminTotal">0</div></div>
+      <div class="stat-card"><div class="label">With bookings</div><div class="value" id="adminBooked">0</div></div>
+      <div class="stat-card"><div class="label">Pending</div><div class="value" id="adminPending">0</div></div>
+      <div class="stat-card"><div class="label">Approved members</div><div class="value" id="adminApproved">0</div></div>
+    </div>
+
+    <div class="panel" style="margin-bottom:1rem;">
+      <div class="panel-title">📅 Upcoming & recent appointments</div>
+      <div id="adminCalendar" style="font-size:0.9rem;color:#64748b;">Loading…</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+        <span>All Members</span>
+        <span style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" onclick="loadAdmin()">Refresh now</button>
+          <button class="btn btn-outline btn-sm" onclick="exportMembersCSV()">Export CSV</button>
+        </span>
+      </div>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.85rem;">
+        <input type="search" id="adminSearch" placeholder="Search name, email, phone…" oninput="applyAdminFilters()" style="flex:1;min-width:180px;padding:0.5rem 0.7rem;border:1px solid var(--border);border-radius:8px;font-size:0.9rem;">
+        <select id="adminStatusFilter" onchange="applyAdminFilters()" style="padding:0.5rem 0.7rem;border:1px solid var(--border);border-radius:8px;font-size:0.9rem;">
+          <option value="all">All statuses</option>
+          <option value="pending">Pending approval</option>
+          <option value="approved">Approved</option>
+          <option value="suspended">Suspended</option>
+        </select>
+        <select id="adminBookingFilter" onchange="applyAdminFilters()" style="padding:0.5rem 0.7rem;border:1px solid var(--border);border-radius:8px;font-size:0.9rem;">
+          <option value="all">All bookings</option>
+          <option value="has">Has bookings</option>
+          <option value="pending">Pending appointments</option>
+          <option value="none">No bookings</option>
+        </select>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name / Email</th><th>Phone</th><th>Location</th><th>Account</th><th>Problem / Bookings</th><th>Joined</th></tr>
+          </thead>
+          <tbody id="adminBody"><tr><td colspan="6" style="text-align:center;color:#9ca3af;">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="float-contact">
+  <a href="https://wa.me/14025175821?text=Hi%20Rebel%20Ink%2C%20I%20have%20a%20question%20about%20tattoo%20services." target="_blank" class="float-btn float-wa">💬 WhatsApp</a>
+  <a href="tel:+14025175821" class="float-btn float-call">📞 Call</a>
+</div>
+
+<script>
+// ===== SERVICES: cheapest first (sortKey = approximate low end USD) =====
+const SERVICES = [
+  {
+    "id": "consult",
+    "name": "Free Consultation & Digital Analysis",
+    "sortKey": 0,
+    "priceLabel": "Free",
+    "tag": "Start here",
+    "img": "https://images.pexels.com/photos/15987322/pexels-photo-15987322.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "short": "Complimentary second opinion, photo evaluation, and customized treatment blueprint. No obligation.",
+    "explanation": "A thorough, no-pressure preliminary evaluation of your tattoo goals, cover-up needs, removal options, or paramedical tattooing. Submit photos or speak directly with our tattoo specialists to get realistic options, session counts, and transparent pricing before committing.",
+    "time": "Detailed response within 24 hours. Phone/SMS direct line: +1 (402) 517-5821.",
+    "process": [
+      "Submit your case details, tattoo history, and goals via the booking form.",
+      "A senior specialist reviews your case notes and any uploaded reference photos.",
+      "Receive a written recommendation: laser removal, custom ink, cover-up, or paramedical tattooing.",
+      "Review transparent session timelines and verified US price ranges.",
+      "Schedule your in-studio procedure or speak directly with our team."
+    ],
+    "tiers": [
+      {
+        "name": "Digital Case & Photo Evaluation",
+        "price": "Free",
+        "desc": "Submit details and photos online for a custom procedure plan within 24 hours.",
+        "img": "https://images.pexels.com/photos/28991529/pexels-photo-28991529.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Live Specialist Call / In-Clinic Review",
+        "price": "Free",
+        "desc": "One-on-one virtual or direct phone consultation with our lead artist at +1 (402) 517-5821.",
+        "img": "https://images.pexels.com/photos/28991522/pexels-photo-28991522.jpeg?auto=compress&cs=tinysrgb&w=800"
+      }
+    ]
+  },
+  {
+    "id": "removal-small",
+    "name": "Laser Tattoo Removal",
+    "sortKey": 75,
+    "priceLabel": "From $75 / session",
+    "tag": "Laser Removal",
+    "img": "https://images.pexels.com/photos/30077237/pexels-photo-30077237.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "short": "State-of-the-art Pico & Q-Switch laser removal for unwanted body tattoos.",
+    "explanation": "Our medical-grade laser systems deliver ultra-short picosecond pulses that shatter tattoo pigments into microscopic dust that your body naturally flushes away. Safe for all skin tones, minimizing thermal trauma, and ideal for complete removal or pre-cover-up lightening.",
+    "time": "10–45 minutes per session. Full removal typically requires 4–8 sessions spaced 6–8 weeks apart.",
+    "process": [
+      "Clinical assessment of ink depth, pigment colors, and skin sensitivity.",
+      "Application of topical medical numbing and localized cryo-cooling for comfort.",
+      "Precision laser wavelength pass targeting the specific pigment layers.",
+      "Immediate post-laser cooling, antimicrobial balm application, and sterile dressing.",
+      "Healing period of 6–8 weeks between sessions as the immune system clears shattered ink."
+    ],
+    "tiers": [
+      {
+        "name": "Extra-Small / Initials / Finger Tattoo",
+        "price": "$75 – $150 / session",
+        "desc": "Under 2 sq in. Quick 10-minute session. Typically 4–6 sessions for complete fade.",
+        "img": "https://images.pexels.com/photos/6593413/pexels-photo-6593413.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Small Tattoo (2–4 inches)",
+        "price": "$150 – $300 / session",
+        "desc": "Wrist, ankle, or chest pieces. Typically 5–7 sessions for complete clearance.",
+        "img": "https://images.pexels.com/photos/6593369/pexels-photo-6593369.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Medium Body Tattoo (Palm-Sized)",
+        "price": "$250 – $500 / session",
+        "desc": "Bicep, forearm, calf, or shoulder design. Multi-pass pigment breakdown.",
+        "img": "https://images.pexels.com/photos/25491869/pexels-photo-25491869.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Large Piece / Full Sleeve Lightening",
+        "price": "$500 – $1,000+ / session",
+        "desc": "Extensive multi-color coverage or dense blackwork preparing for cover-up art.",
+        "img": "https://images.pexels.com/photos/18430399/pexels-photo-18430399.jpeg?auto=compress&cs=tinysrgb&w=800"
+      }
+    ]
+  },
+  {
+    "id": "custom-tattoo",
+    "name": "Custom Tattoo Art & Body Ink",
+    "sortKey": 100,
+    "priceLabel": "$100 – $1,500+",
+    "tag": "Custom Ink",
+    "img": "https://images.pexels.com/photos/20339298/pexels-photo-20339298.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "short": "Fine-line, micro-realism, black & grey, and custom illustrative tattoos crafted by licensed master tattoo artists.",
+    "explanation": "From delicate fine-line script and botanical illustrations to bold blackwork and intricate micro-realism, our tattoo studio delivers custom, one-of-a-kind body art. We utilize single-use sterilized cartridge needles, hospital-grade hygiene protocols, and premium carbon pigments designed to age gracefully.",
+    "time": "From 45 minutes for micro-tattoos up to full-day sessions (4–8 hours) for large custom projects.",
+    "process": [
+      "Design consultation: discuss concepts, reference imagery, placement, and sizing.",
+      "Custom digital stencil rendering and anatomic placement review on skin.",
+      "Single-use sterile setup in a clean, professional clinical-standard studio.",
+      "Precision needle tattooing with master hand control, shading, and linework.",
+      "Application of breathable SecondSkin protective barrier and complete aftercare package."
+    ],
+    "tiers": [
+      {
+        "name": "Micro / Fine-Line Script / Minimalist",
+        "price": "$100 – $250",
+        "desc": "Delicate lettering, geometric accents, or fine single-needle designs.",
+        "img": "https://images.pexels.com/photos/18286028/pexels-photo-18286028.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Custom Flash & Medium Piece (3–6 in)",
+        "price": "$250 – $600",
+        "desc": "Original custom design, black & grey shading, or illustrative linework on forearm or calf.",
+        "img": "https://images.pexels.com/photos/15303268/pexels-photo-15303268.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Half-Sleeve / Detailed Custom Project",
+        "price": "$600 – $1,200",
+        "desc": "Extensive upper arm, forearm, or calf composition with rich textures, depth, and flow.",
+        "img": "https://images.pexels.com/photos/29491039/pexels-photo-29491039.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Full Sleeve / Backpiece Masterwork",
+        "price": "$1,200 – $2,500+",
+        "desc": "Large-scale full limb or torso project spanning multiple dedicated sittings.",
+        "img": "https://images.pexels.com/photos/28919350/pexels-photo-28919350.jpeg?auto=compress&cs=tinysrgb&w=800"
+      }
+    ]
+  },
+  {
+    "id": "tattoo-coverup",
+    "name": "Tattoo Cover-Up & Restoration",
+    "sortKey": 250,
+    "priceLabel": "$250 – $2,500",
+    "tag": "Cover-Up & Rework",
+    "img": "https://images.pexels.com/photos/20267349/pexels-photo-20267349.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "short": "Transform dated, faded, or poorly executed tattoos into breathtaking new custom designs with expert coverage.",
+    "explanation": "Covering an existing tattoo requires specialized technical mastery in optical depth, color theory, and anatomical flow. Rather than creating a muddy black blob, our cover-up specialists strategically align darker design elements over old ink while pulling eyes toward vibrant, new focal highlights. Optional light laser prep available.",
+    "time": "Usually 2–6 hours per sitting. Complex cover-ups typically require 1–3 sessions.",
+    "process": [
+      "Detailed evaluation of existing tattoo darkness, scarring, and raised line texture.",
+      "Strategic cover-up concept design mapping dark saturation directly over old lines.",
+      "Optional 1–2 laser fading sessions if old ink is excessively dense or black.",
+      "Session 1: Line re-routing, initial deep saturation, and foundation coverage.",
+      "Session 2+: Highlighting, contrast depth, and full disguise of previous lines."
+    ],
+    "tiers": [
+      {
+        "name": "Line Refresh & Rework / Detail Re-Ink",
+        "price": "$200 – $450",
+        "desc": "Resharpen blown-out lines, restore faded colors, and revitalize existing tattoos.",
+        "img": "https://images.pexels.com/photos/20832654/pexels-photo-20832654.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Small Area Cover-Up (Names / Symbols)",
+        "price": "$350 – $750",
+        "desc": "Complete disguise of old names, tribal symbols, or faded amateur tattoos.",
+        "img": "https://images.pexels.com/photos/28919353/pexels-photo-28919353.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Medium Piece Cover-Up (Forearm / Shoulder)",
+        "price": "$750 – $1,500",
+        "desc": "Complete transformation using dark illustrative, floral, or blackwork themes.",
+        "img": "https://images.pexels.com/photos/10384906/pexels-photo-10384906.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Large-Scale Blast-Over & Sleeve Redesign",
+        "price": "$1,500 – $2,800+",
+        "desc": "Total overhaul of heavily tattooed arms or legs into a cohesive modern composition.",
+        "img": "https://images.pexels.com/photos/4123911/pexels-photo-4123911.jpeg?auto=compress&cs=tinysrgb&w=800"
+      }
+    ]
+  },
+  {
+    "id": "paramedical-tattoo",
+    "name": "Paramedical Tattooing & Skin Camouflage",
+    "sortKey": 350,
+    "priceLabel": "$350 – $3,000",
+    "tag": "Paramedical",
+    "img": "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?w=800&q=80",
+    "short": "Medical-grade skin-tone micropigmentation to disguise surgical scars, stretch marks, hypo-pigmentation, and 3D areola recreation.",
+    "explanation": "Paramedical tattooing blends art and reconstructive medicine. Using custom-blended, medical-grade pigments matched precisely to your natural skin undertones, we camouflage hypopigmented scars from surgeries, accidents, burns, or stretch marks. We also specialize in post-mastectomy 3D nipple-areola restoration with hyper-realistic light and shadow depth.",
+    "time": "1.5–3 hours per session. Most treatments require 2–3 sessions spaced 4–6 weeks apart.",
+    "process": [
+      "Skin and scar texture assessment (scar must be mature, flat, and at least 9–12 months old).",
+      "Precise custom pigment formulation matching Fitzpatrick skin tone and undertones under natural lighting.",
+      "Gentle micro-implantation of custom skin-tone pigments into the scar dermal layer.",
+      "Healing cycle of 4–6 weeks as the pigment settles and softens into the natural dermis.",
+      "Follow-up perfecting session to balance tone transition and ensure undetectable edges."
+    ],
+    "tiers": [
+      {
+        "name": "Small Surgical Scar (Thyroid, Appendix, C-Section)",
+        "price": "$350 – $750",
+        "desc": "Camouflage linear surgical scars up to 6 inches. 1–2 sessions.",
+        "img": "https://images.unsplash.com/photo-1568515387631-8b650bbcdb90?w=800&q=80"
+      },
+      {
+        "name": "Stretch Mark Camouflage (Per Zone)",
+        "price": "$600 – $1,400",
+        "desc": "Blend white/hypopigmented stretch marks on hips, thighs, abdomen, or arms.",
+        "img": "https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=800&q=80"
+      },
+      {
+        "name": "3D Nipple-Areola Restoration (Unilateral / Bilateral)",
+        "price": "$800 – $1,800",
+        "desc": "Hyper-realistic 3D restorative tattooing for post-mastectomy breast reconstruction.",
+        "img": "https://images.pexels.com/photos/15987322/pexels-photo-15987322.jpeg?auto=compress&cs=tinysrgb&w=800"
+      },
+      {
+        "name": "Extensive Surgical / Trauma / Burn Scars",
+        "price": "$1,500 – $3,000",
+        "desc": "Complex multi-quadrant scar camouflage and multi-session skin tone restoration.",
+        "img": "https://images.pexels.com/photos/28991529/pexels-photo-28991529.jpeg?auto=compress&cs=tinysrgb&w=800"
+      }
+    ]
+  }
+];
+
+// Sort cheapest first
+SERVICES.sort((a, b) => a.sortKey - b.sortKey);
+
+let currentServiceId = null;
+
+
+function renderServiceCards(containerId) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = SERVICES.map(s => `
+    <div class="svc-card" onclick="openService('${s.id}')">
+      <div class="svc-img" style="background-color:#e8eef5;position:relative;overflow:hidden;">
+        <img src="${s.img}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;" onerror="this.alt='Image'">
+        <span class="tag">${s.tag}</span>
+      </div>
+      <div class="svc-body">
+        <h3>${s.name}</h3>
+        <p>${s.short}</p>
+        <div class="svc-price">${s.priceLabel}</div>
+        <button class="btn btn-primary btn-block" onclick="event.stopPropagation(); openService('${s.id}')">View details →</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openService(id) {
+  const s = SERVICES.find(x => x.id === id);
+  if (!s) return;
+  currentServiceId = id;
+  const tiersHtml = s.tiers.map((t, i) => `
+    <div class="tier-card" style="display:flex;gap:0.9rem;align-items:stretch;" onclick="openTier('${s.id}', ${i})">
+      <div style="width:88px;min-width:88px;height:72px;border-radius:8px;background:#e8eef5;overflow:hidden;position:relative;">
+        <img src="${t.img || s.img}" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.alt='Image'">
+      </div>
+      <div style="flex:1;">
+        <h4>${t.name}</h4>
+        <div class="tier-price">${t.price}</div>
+        <p>${t.desc}</p>
+        <p style="font-size:0.8rem;color:var(--blue);font-weight:600;margin-top:0.35rem;">View details & photos →</p>
+      </div>
+    </div>
+  `).join('');
+  const stepsHtml = s.process.map((step, i) => `
+    <div class="process-step">
+      <div class="process-num">${i + 1}</div>
+      <div>${step}</div>
+    </div>
+  `).join('');
+  document.getElementById('serviceDetailContent').innerHTML = `
+    <div class="page-hero">
+      <div class="container">
+        <div class="back-link" onclick="showPage('services-list')">← All services</div>
+        <h1>${s.name}</h1>
+        <p>${s.short}</p>
+      </div>
+    </div>
+    <section>
+      <div class="container">
+        <div class="detail-grid">
+          <div>
+            <div class="detail-img" style="position:relative;overflow:hidden;border-radius:14px;height:280px;background:#e8eef5;margin-bottom:1.2rem;">
+              <img src="${s.img}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.alt='Image'">
+            </div>
+            <h3 style="color:var(--navy);margin-bottom:0.6rem;">What it is</h3>
+            <p style="margin-bottom:1rem;color:var(--muted);">${s.explanation}</p>
+            <div class="info-box">
+              <strong>⏱ Time required:</strong> ${s.time}
+            </div>
+            <h3 style="color:var(--navy);margin:1.2rem 0 0.7rem;">Process</h3>
+            <div class="process-steps">${stepsHtml}</div>
+          </div>
+          <div>
+            <h3 style="color:var(--navy);margin-bottom:0.7rem;">Pricing tiers (low → high)</h3>
+            <p style="font-size:0.88rem;color:var(--muted);margin-bottom:1rem;">US market ranges 2025–2026. Exact quote after consultation.</p>
+            ${tiersHtml}
+            <button class="btn btn-accent btn-block btn-lg" style="margin-top:1rem;" onclick="goBookFromDetail()">Book / Inquire about this service</button>
+            <button class="btn btn-outline btn-block" style="margin-top:0.6rem;" onclick="showPage('services-list')">← Back to all services</button>
+            <p style="margin-top:1rem;font-size:0.88rem;text-align:center;">Or call <a href="tel:+14025175821" style="color:var(--blue);font-weight:700;">+1 (402) 517-5821</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+  showPage('service-detail');
+}
+
+
+function fillBookServiceOptions() {
+  const sel = document.getElementById('bookService');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">Select service</option>' +
+    SERVICES.map(s => `<option value="${s.name}">${s.name} — ${s.priceLabel}</option>`).join('');
+}
+
+const TESTIMONIALS = [
+  { stars: 5, quote: "The artist listened to every detail. My custom blackwork sleeve healed perfectly and looks even better than the sketch.", who: "Marcus T.", where: "California · Custom sleeve" },
+  { stars: 5, quote: "Covered a faded name with a beautiful floral piece. Nobody can tell there was anything underneath.", who: "Elena R.", where: "Texas · Cover-up" },
+  { stars: 5, quote: "Pico laser sessions were manageable. After six sessions the old ink is almost gone. Ready for a fresh design.", who: "James K.", where: "New York · Laser removal" },
+  { stars: 5, quote: "Stretch mark camouflage on my abdomen made a huge difference. Skin tone matches so well now.", who: "Sofia M.", where: "Florida · Paramedical" },
+  { stars: 5, quote: "Delicate botanical work on my forearm. Clean lines, great aftercare guidance. Highly recommend.", who: "David L.", where: "Illinois · Fine-line tattoo" },
+  { stars: 5, quote: "Large tribal cover-up turned into a cohesive modern piece. Studio hygiene and communication were excellent.", who: "Priya S.", where: "Georgia · Full cover-up" },
+  { stars: 5, quote: "Lightened a dense blackwork piece then covered it. The plan was clear from the free consult onward.", who: "Chris W.", where: "Ohio · Removal + redesign" },
+  { stars: 5, quote: "Paramedical work after reconstruction felt respectful and realistic. Life-changing result.", who: "Aisha B.", where: "Arizona · 3D areola restoration" }
+]
+
+
+
+
+// ===== FAQ / BA / PROVIDERS DATA =====
+const FAQ_ITEMS = [
+  { q: 'How much does a custom tattoo cost in the USA?', a: 'Small pieces often start around $100–$300. Medium designs run $300–$800, while large or full-day projects can be $1,000–$1,500+. Exact quotes depend on size, complexity, and artist.' },
+  { q: 'How many laser sessions to remove a tattoo?', a: 'Most tattoos need 4–8 sessions spaced 6–8 weeks apart. Black ink clears faster; multi-color and dense work take longer. A free consult can give a realistic range.' },
+  { q: 'Does cover-up always work over old ink?', a: 'Many designs can be covered successfully with strategic darker elements and good design flow. Very dark or large pieces may need laser lightening first.' },
+  { q: 'Is paramedical tattooing the same as decorative tattoo?', a: 'Paramedical focuses on matching skin tone for scars, stretch marks, or reconstructive work (e.g. areola). Pigments and technique differ from decorative body art.' },
+  { q: 'Is the consultation really free?', a: 'Yes. Submit photos and goals online or call. You receive a written recommendation and price range with no obligation.' },
+  { q: 'Is tattoo work covered by insurance?', a: 'Decorative tattoos, cover-ups, and laser removal are typically not covered. Some reconstructive/paramedical cases may differ — check with your insurer.' },
+  { q: 'How long does a tattoo session take?', a: 'Micro tattoos can be under an hour. Larger custom work often needs 4–8 hour sessions, sometimes split across days.' },
+  { q: 'What aftercare should I follow?', a: 'Keep the area clean, moisturized with recommended balm, avoid sun and soaking until healed. Your artist will give specific instructions.' }
+];
+
+const BEFORE_AFTER = [
+  {
+    "title": "Fine-line session",
+    "service": "Tattoo",
+    "before": "https://images.pexels.com/photos/28991522/pexels-photo-28991522.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "after": "https://images.pexels.com/photos/30077237/pexels-photo-30077237.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "note": "Studio session reference."
+  },
+  {
+    "title": "Cover-up process",
+    "service": "Cover-Up",
+    "before": "https://images.pexels.com/photos/6593413/pexels-photo-6593413.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "after": "https://images.pexels.com/photos/6593369/pexels-photo-6593369.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "note": "Cover-up work in progress."
+  },
+  {
+    "title": "Artist at work",
+    "service": "Tattoo",
+    "before": "https://images.pexels.com/photos/25491869/pexels-photo-25491869.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "after": "https://images.pexels.com/photos/18430399/pexels-photo-18430399.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "note": "Custom ink session."
+  },
+  {
+    "title": "Paramedical / detail",
+    "service": "Paramedical",
+    "before": "https://images.pexels.com/photos/20339298/pexels-photo-20339298.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "after": "https://images.pexels.com/photos/18286028/pexels-photo-18286028.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "note": "Detail and tone work."
+  },
+  {
+    "title": "Blackwork session",
+    "service": "Tattoo",
+    "before": "https://images.pexels.com/photos/15303268/pexels-photo-15303268.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "after": "https://images.pexels.com/photos/29491039/pexels-photo-29491039.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "note": "Bold blackwork reference."
+  },
+  {
+    "title": "Consultation & setup",
+    "service": "Consultation",
+    "before": "https://images.pexels.com/photos/28919350/pexels-photo-28919350.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "after": "https://images.pexels.com/photos/20267349/pexels-photo-20267349.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "note": "Studio consult setup."
+  }
+];
+
+const PROVIDERS = [
+  { name: 'Northeast Ink Studio', region: 'Northeast USA', focus: 'Custom tattoos, fine-line, blackwork', note: 'Appointment-based custom work.' },
+  { name: 'Midwest Cover & Laser', region: 'Midwest', focus: 'Cover-ups and laser removal', note: 'Strong focus on redesign pathways.' },
+  { name: 'Sunbelt Laser & Ink', region: 'South / Southwest', focus: 'Laser removal, cover-ups', note: 'Removal + redesign pathways.' },
+  { name: 'Pacific Custom Collective', region: 'West Coast', focus: 'Custom art & large-scale projects', note: 'Multi-session large pieces common.' },
+  { name: 'Capitol Paramedical Arts', region: 'Mid-Atlantic', focus: 'Scar camouflage, restorative tattooing', note: 'Paramedical and reconstructive focus.' },
+  { name: 'Great Lakes Tattoo Collective', region: 'Great Lakes', focus: 'Custom, micro-realism, cover-ups', note: 'Broad decorative menu.' }
+];
+
+function renderFaq() {
+  const el = document.getElementById('faqList');
+  if (!el) return;
+  el.innerHTML = FAQ_ITEMS.map((f, i) => `
+    <div class="faq-item" id="faq${i}">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">${f.q} <span>+</span></div>
+      <div class="faq-a">${f.a}</div>
+    </div>
+  `).join('');
+}
+
+function renderBeforeAfter() {
+  const el = document.getElementById('baGrid');
+  if (!el) return;
+  el.innerHTML = BEFORE_AFTER.map(b => `
+    <div class="ba-card">
+      <div class="ba-pair">
+        <img src="${b.before}" alt="Before ${b.title}" loading="lazy" onerror="this.style.background='#1e3a5f'">
+        <img src="${b.after}" alt="After ${b.title}" loading="lazy" onerror="this.style.background='#1e3a5f'">
+      </div>
+      <div class="ba-labels"><span>Before</span><span>After</span></div>
+      <div class="ba-body">
+        <h4>${b.title}</h4>
+        <p style="font-size:0.82rem;color:var(--muted);">${b.service} · ${b.note}</p>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderProviders() {
+  const el = document.getElementById('provGrid');
+  if (!el) return;
+  el.innerHTML = PROVIDERS.map(p => `
+    <div class="prov-card">
+      <h4>${p.name}</h4>
+      <div class="meta">${p.region}</div>
+      <p style="font-size:0.88rem;margin-bottom:0.4rem;"><strong>${p.focus}</strong></p>
+      <p style="font-size:0.82rem;color:var(--muted);">${p.note}</p>
+    </div>
+  `).join('');
+}
+
+const I18N = {
+  en: { howTitle:'How it works', howDesc:'From first question to treatment — simple steps.', step1t:'Create account', step1d:'Register with name, phone, and location.', step2t:'Explore services', step2d:'Compare prices, process, and time for each option.', step3t:'Book consult', step3d:'Describe your case. We review within 1–2 days.', step4t:'Get treated', step4d:'Work with a matched specialist for your plan.', cmpTitle:'Quick comparison', cmpDesc:'Side-by-side view of common options.', faqTitle:'Frequently asked questions', faqSub:'Straight answers on cost, pain, sessions, and recovery.', baTitle:'Before & After', baSub:'Example outcomes for tattoos, cover-ups, removal, and paramedical work.', provTitle:'Provider directory', provSub:'Example specialists across the USA.' },
+  es: { howTitle:'Cómo funciona', howDesc:'De la primera pregunta al tratamiento — pasos simples.', step1t:'Crear cuenta', step1d:'Regístrese con nombre, teléfono y ubicación.', step2t:'Ver servicios', step2d:'Compare precios, proceso y tiempo.', step3t:'Reservar consulta', step3d:'Describa su caso. Respondemos en 1–2 días.', step4t:'Tratamiento', step4d:'Trabaje con un especialista adecuado.', cmpTitle:'Comparación rápida', cmpDesc:'Vista lado a lado de opciones comunes.', faqTitle:'Preguntas frecuentes', faqSub:'Respuestas sobre costo, dolor, sesiones y recuperación.', baTitle:'Antes y después', baSub:'Ejemplos de tatuajes, coberturas, eliminación y trabajo paramédico.', provTitle:'Directorio de proveedores', provSub:'Especialistas de ejemplo en EE.UU.' }
+};
+let currentLang = localStorage.getItem('ri_lang') || 'en';
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('ri_lang', lang);
+  const dict = I18N[lang] || I18N.en;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (dict[k]) el.textContent = dict[k];
+  });
+}
+
+function toggleLang() {
+  setLang(currentLang === 'en' ? 'es' : 'en');
+}
+
+function toggleMenu(btn) {
+  const nav = btn && btn.parentElement ? btn.parentElement.querySelector('.nav') : null;
+  if (nav) nav.classList.toggle('open');
+  document.querySelectorAll('.nav.open').forEach(n => {
+    if (n !== nav) n.classList.remove('open');
+  });
+}
+
+
+
+
+let currentTier = null;
+
+function openTier(serviceId, tierIndex) {
+  const s = SERVICES.find(x => x.id === serviceId);
+  if (!s || !s.tiers[tierIndex]) return;
+  const t = s.tiers[tierIndex];
+  currentServiceId = serviceId;
+  currentTier = { serviceId, tierIndex, name: t.name, price: t.price };
+  // extra gallery images (service img + tier img + related)
+  // Gallery: this option's photo + other options in the SAME service only (no unrelated photos)
+  const siblingImgs = (s.tiers || []).map(x => x.img).filter(Boolean);
+  const gallery = [t.img, s.img].concat(siblingImgs).filter((v, i, a) => v && a.indexOf(v) === i).slice(0, 5);
+
+  const galleryHtml = gallery.map((src) => `<div style="background:#e8eef5;overflow:hidden;"><img src="${src}" alt="" style="width:100%;height:100%;object-fit:cover;" ></div>`).join('');
+
+  document.getElementById('tierDetailContent').innerHTML = `
+    <div class="page-hero">
+      <div class="container">
+        <div class="back-link" onclick="openService('${s.id}')">← Back to ${s.name}</div>
+        <h1>${t.name}</h1>
+        <p>${s.name} · ${t.price}</p>
+      </div>
+    </div>
+    <section>
+      <div class="container" style="max-width:800px;">
+        <div style="background-color:#e8eef5;height:260px;margin-bottom:1.2rem;overflow:hidden;border-radius:14px;">
+          <img src="${t.img || s.img}" alt="" style="width:100%;height:260px;object-fit:cover;display:block;" onerror="this.alt='Image'">
+        </div>
+        <h3 style="color:var(--navy);margin-bottom:0.5rem;">About this option</h3>
+        <p style="color:var(--muted);margin-bottom:0.8rem;">${t.desc}</p>
+        <p style="color:var(--muted);margin-bottom:1rem;">${s.explanation}</p>
+        <div class="info-box">
+          <strong>Price range:</strong> ${t.price}<br>
+          <strong>⏱ Time:</strong> ${s.time}
+        </div>
+        <h3 style="color:var(--navy);margin:1.2rem 0 0.6rem;">Example photos</h3>
+        <div class="tier-gallery">${galleryHtml}</div>
+        <h3 style="color:var(--navy);margin:1.2rem 0 0.6rem;">What happens in the process</h3>
+        <div class="process-steps">
+          ${s.process.map((step, i) => `
+            <div class="process-step">
+              <div class="process-num">${i + 1}</div>
+              <div>${step}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:0.7rem;">
+          <button class="btn btn-accent btn-lg" onclick="goBookFromTier()">Book this option</button>
+          <button class="btn btn-outline" onclick="openService('${s.id}')">← All tiers for ${s.name}</button>
+          <button class="btn btn-outline" onclick="showPage('services-list')">All services</button>
+        </div>
+        <p style="margin-top:1rem;font-size:0.9rem;">Questions? <a href="tel:+14025175821" style="color:var(--blue);font-weight:700;">+1 (402) 517-5821</a></p>
+      </div>
+    </section>
+  `;
+  showPage('tier-detail');
+}
+
+
+
+// ===== API CLIENT & AUTH (shared across devices via backend) =====
+const API = '';
+const TOKEN_KEY = 'ri_token';
+const USER_KEY = 'ri_user';
+
+function getToken() { return localStorage.getItem(TOKEN_KEY); }
+function setToken(t) { if (t) localStorage.setItem(TOKEN_KEY, t); else localStorage.removeItem(TOKEN_KEY); }
+function getCurrentUser() {
+  try { return JSON.parse(localStorage.getItem(USER_KEY) || 'null'); } catch { return null; }
+}
+function setCurrentUser(u) {
+  if (u) localStorage.setItem(USER_KEY, JSON.stringify(u));
+  else localStorage.removeItem(USER_KEY);
+}
+
+async function api(path, options = {}) {
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  const token = getToken();
+  if (token) headers['Authorization'] = 'Bearer ' + token;
+  let res;
+  try {
+    res = await fetch(API + path, { ...options, headers });
+  } catch (networkErr) {
+    const err = new Error('Cannot reach the Rebel Ink server. Please try again in a moment.');
+    err.status = 0;
+    throw err;
+  }
+  let data = {};
+  try { data = await res.json(); } catch (_) {}
+  if (!res.ok) {
+    const err = new Error(data.error || res.statusText || 'Request failed');
+    err.status = res.status;
+    err.data = data;
+    throw err;
+  }
+  return data;
+}
+
+
+let profilePwVisible = false;
+let adminTimer = null;
+let memberTimer = null;
+
+function toggleChat() {
+  const p = document.getElementById('chatPanel');
+  if (p) p.classList.toggle('open');
+}
+
+function toggleLargeText() {
+  document.body.classList.toggle('a11y-large');
+  const on = document.body.classList.contains('a11y-large');
+  localStorage.setItem('ri_a11y_large', on ? '1' : '0');
+  const btn = document.getElementById('a11yTextBtn');
+  if (btn) btn.classList.toggle('active', on);
+}
+
+function initA11y() {
+  if (localStorage.getItem('ri_a11y_large') === '1') {
+    document.body.classList.add('a11y-large');
+    const btn = document.getElementById('a11yTextBtn');
+    if (btn) btn.classList.add('active');
+  }
+}
+
+function setupPhotoPreview() {
+  const input = document.getElementById('bookPhotos');
+  const prev = document.getElementById('photoPreview');
+  if (!input || !prev) return;
+  input.onchange = function() {
+    prev.innerHTML = '';
+    const files = Array.from(input.files || []).slice(0, 5);
+    files.forEach(f => {
+      if (!f.type.startsWith('image/')) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.alt = f.name;
+        prev.appendChild(img);
+      };
+      reader.readAsDataURL(f);
+    });
+  };
+}
+
+async function readPhotosAsDataUrls() {
+  const input = document.getElementById('bookPhotos');
+  if (!input || !input.files || !input.files.length) return [];
+  const files = Array.from(input.files).slice(0, 5);
+  const out = [];
+  for (const f of files) {
+    if (!f.type.startsWith('image/')) continue;
+    const data = await new Promise((resolve, reject) => {
+      const r = new FileReader();
+      r.onload = () => resolve({ name: f.name, dataUrl: r.result });
+      r.onerror = reject;
+      r.readAsDataURL(f);
+    });
+    out.push(data);
+  }
+  return out;
+}
+
+function updateNav() {
+  const user = getCurrentUser();
+  document.querySelectorAll('.nav').forEach(nav => {
+    if (nav.closest('#page-admin') || nav.closest('#page-admin-login')) return;
+    const page = nav.closest('.page');
+    const id = page ? page.id : '';
+    if (id === 'page-dashboard' || id === 'page-profile') return;
+    if (user && user.email && user.role !== 'admin') {
+      let extra = '';
+      if (id === 'page-service-detail') extra = '<button onclick="goBookFromDetail()">Book This</button>';
+      if (id === 'page-tier-detail') extra = '<button onclick="goBookFromTier()">Book This</button>';
+      nav.innerHTML = `
+        <a onclick="showPage('services-list')">Services</a>
+        <a onclick="showPage('before-after')">Before/After</a>
+        <a onclick="showPage('faq')">FAQ</a>
+        ${extra}
+        <button onclick="showPage('dashboard')">My Portal</button>
+        <button onclick="showPage('profile')">Profile</button>
+        <button class="lang-btn" onclick="toggleLang()">EN/ES</button>
+        <button onclick="logout()">Logout</button>
+      `;
+    }
+  });
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav.open').forEach(n => n.classList.remove('open'));
+  const page = document.getElementById('page-' + name);
+  if (page) page.classList.add('active');
+  window.scrollTo(0, 0);
+  if (name === 'dashboard') { loadDashboard(); startMemberRefresh(); }
+  else stopMemberRefresh();
+  if (name === 'profile') loadProfile();
+  if (name === 'services-list') renderServiceCards('allServices');
+  if (name === 'landing') { renderServiceCards('landingServices'); renderTestimonials(); setLang(currentLang); }
+  if (name === 'faq') renderFaq();
+  if (name === 'before-after') renderBeforeAfter();
+  if (name === 'providers') renderProviders();
+  if (name === 'admin') {
+    if (!getToken() || !getCurrentUser() || getCurrentUser().role !== 'admin') {
+      showPage('admin-login');
+      return;
+    }
+    loadAdmin();
+    startAdminRefresh();
+  } else {
+    stopAdminRefresh();
+  }
+  updateNav();
+}
+
+function toggleState() {
+  const c = document.getElementById('regCountry').value;
+  document.getElementById('stateGroup').style.display = c === 'United States' ? 'block' : 'none';
+  if (c !== 'United States') document.getElementById('regState').value = '';
+}
+
+function validPassword(pw) {
+  return /[a-zA-Z]/.test(pw) && /[0-9]/.test(pw) && /[^a-zA-Z0-9]/.test(pw) && pw.length >= 8;
+}
+
+async function handleRegister(e) {
+  e.preventDefault();
+  const name = document.getElementById('regName').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const country = document.getElementById('regCountry').value;
+  const state = document.getElementById('regState').value;
+  const email = document.getElementById('regEmail').value.trim().toLowerCase();
+  const password = document.getElementById('regPassword').value;
+  const confirm = document.getElementById('regConfirm').value;
+  const err = document.getElementById('regError');
+  if (!name || !phone || !country || !email) {
+    err.style.display = 'block'; err.textContent = 'Please fill all required fields.'; return;
+  }
+  if (country === 'United States' && !state) {
+    err.style.display = 'block'; err.textContent = 'Please select your state.'; return;
+  }
+  if (!validPassword(password)) {
+    err.style.display = 'block';
+    err.textContent = 'Password must be at least 8 characters and include letters, numbers, and a special character.';
+    return;
+  }
+  if (password !== confirm) {
+    err.style.display = 'block'; err.textContent = 'Passwords do not match.'; return;
+  }
+  try {
+    err.style.display = 'none';
+    const data = await api('/api/register', {
+      method: 'POST',
+      body: JSON.stringify({ name, phone, country, state, email, password })
+    });
+    err.style.display = 'block';
+    err.style.background = '#ecfdf5';
+    err.style.borderColor = '#a7f3d0';
+    err.style.color = '#065f46';
+    err.textContent = data.message || 'Account created. Wait for admin approval, then log in.';
+    setTimeout(() => showPage('login'), 2500);
+  } catch (ex) {
+    err.style.display = 'block';
+    err.style.background = '#fef2f2';
+    err.style.borderColor = '#fecaca';
+    err.style.color = '#b91c1c';
+    err.textContent = ex.message || 'Registration failed';
+  }
+}
+
+async function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  const err = document.getElementById('loginError');
+  try {
+    err.style.display = 'none';
+    const data = await api('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    });
+    setToken(data.token);
+    setCurrentUser(data.user);
+    if (data.user.role === 'admin') {
+      showPage('admin');
+    } else {
+      showPage('dashboard');
+    }
+  } catch (ex) {
+    err.style.display = 'block';
+    err.textContent = ex.message || 'Login failed';
+  }
+}
+
+function logout() {
+  setToken(null);
+  setCurrentUser(null);
+  stopMemberRefresh();
+  stopAdminRefresh();
+  showPage('login');
+}
+
+async function loadDashboard() {
+  const cur = getCurrentUser();
+  if (!cur || !getToken()) { showPage('login'); return; }
+  try {
+    const data = await api('/api/me');
+    const full = data.user;
+    setCurrentUser({
+      id: full._id || full.id,
+      name: full.name,
+      email: full.email,
+      phone: full.phone,
+      country: full.country,
+      state: full.state || '',
+      role: full.role,
+      status: full.status,
+      createdAt: full.createdAt
+    });
+    document.getElementById('dashName').textContent = full.name;
+    document.getElementById('dashPhone').textContent = full.phone || '—';
+    const loc = full.country === 'United States' && full.state ? full.state + ', USA' : (full.country || '—');
+    document.getElementById('dashLocation').textContent = loc;
+    const statusLabel = full.status === 'approved' ? ' · Account approved' : (full.status ? ' · ' + full.status : '');
+    document.getElementById('dashMeta').textContent = full.email + statusLabel;
+    const notice = document.getElementById('accountStatusNotice');
+    const noticeText = document.getElementById('accountStatusText');
+    if (notice && noticeText) {
+      if (full.status === 'approved') {
+        notice.style.borderLeftColor = '#16a34a';
+        noticeText.innerHTML = '<strong style=\"color:#166534;\">✓ Account approved.</strong> You can submit appointment requests and track admin decisions here.';
+      } else if (full.status === 'suspended') {
+        notice.style.borderLeftColor = '#dc2626';
+        noticeText.innerHTML = '<strong style=\"color:#991b1b;\">Account suspended.</strong> Please contact the administrator.';
+      } else {
+        notice.style.borderLeftColor = '#d97706';
+        noticeText.innerHTML = '<strong style=\"color:#92400e;\">Pending admin approval.</strong> Your registration is saved. You will be able to book once the administrator approves your account. This page checks for updates every 10 seconds.';
+      }
+    }
+    const bookings = full.bookings || [];
+    document.getElementById('dashAppts').textContent = bookings.length;
+    renderServiceCards('dashServices');
+    fillBookServiceOptions();
+    const dt = document.getElementById('dashTestimonials');
+    if (dt && typeof TESTIMONIALS !== 'undefined') {
+      dt.innerHTML = TESTIMONIALS.map(t => `
+        <div class="testimonial-card">
+          <div class="stars-sm">${'★'.repeat(t.stars)}</div>
+          <div class="quote">"${t.quote}"</div>
+          <div class="who">${t.who}</div>
+          <div class="where">${t.where}</div>
+        </div>
+      `).join('');
+    }
+    const latestApproved = bookings.find(b => b.status === 'Approved');
+    const apptNotice = document.getElementById('appointmentNotice');
+    const apptNoticeText = document.getElementById('appointmentNoticeText');
+    if (latestApproved && apptNotice && apptNoticeText) {
+      apptNotice.style.display = 'block';
+      apptNoticeText.innerHTML = '<strong>✓ Appointment approved — you are good to go.</strong><br>' +
+        String(latestApproved.service || 'Appointment') +
+        (latestApproved.date ? ' · Preferred date: ' + String(latestApproved.date) : '') +
+        (latestApproved.adminNote ? '<br><span style="color:#92400e;">Admin note: ' + String(latestApproved.adminNote) + '</span>' : '');
+    } else if (apptNotice) {
+      apptNotice.style.display = 'none';
+    }
+    const tbody = document.getElementById('memberBookings');
+    if (!bookings.length) {
+      tbody.innerHTML = '<tr><td colspan="4" style="color:#9ca3af;text-align:center;">No bookings yet</td></tr>';
+    } else {
+      tbody.innerHTML = bookings.map(b => {
+        const statusClass = b.status === 'Approved' || b.status === 'Done' ? 'badge-done' :
+          b.status === 'Rejected' || b.status === 'Cancelled' ? 'badge-rejected' : 'badge-pending';
+        const note = b.adminNote ? `<br><span style="font-size:0.78rem;color:#92400e;">Admin note: ${b.adminNote}</span>` : '';
+        let statusText = b.status || 'Pending';
+        if (b.status === 'Approved') statusText = 'Approved — you are good to go';
+        return `
+        <tr>
+          <td>${b.date || (b.createdAt || '').toString().slice(0,10) || '—'}</td>
+          <td>${b.service}</td>
+          <td style="max-width:220px;">${(b.problem || '').slice(0,80)}${(b.problem||'').length>80?'…':''}${note}</td>
+          <td><span class="badge ${statusClass}">${statusText}</span></td>
+        </tr>`;
+      }).join('');
+    }
+  } catch (ex) {
+    if (ex.status === 401) logout();
+  }
+}
+
+async function loadProfile() {
+  const cur = getCurrentUser();
+  if (!cur || !getToken()) { showPage('login'); return; }
+  try {
+    const data = await api('/api/me');
+    const full = data.user;
+    document.getElementById('profName').textContent = full.name || '—';
+    document.getElementById('profEmail').textContent = full.email || '—';
+    document.getElementById('profPhone').textContent = full.phone || '—';
+    document.getElementById('profCountry').textContent = full.country || '—';
+    document.getElementById('profState').textContent = full.state || (full.country === 'United States' ? '—' : 'N/A');
+    document.getElementById('profJoined').textContent = full.createdAt ? new Date(full.createdAt).toLocaleString() : '—';
+    profilePwVisible = false;
+    document.getElementById('profPw').textContent = '••••••••';
+  } catch (ex) {
+    if (ex.status === 401) logout();
+  }
+}
+
+function toggleProfPw() {
+  profilePwVisible = !profilePwVisible;
+  document.getElementById('profPw').textContent = profilePwVisible
+    ? '(stored securely — use Forgot password to change)'
+    : '••••••••';
+}
+
+async function handleBook(e) {
+  e.preventDefault();
+  const cur = getCurrentUser();
+  if (!cur || !getToken()) { showPage('login'); return false; }
+  const service = document.getElementById('bookService').value;
+  const date = document.getElementById('bookDate').value;
+  const problem = document.getElementById('bookProblem').value.trim();
+  if (!service || !problem) return false;
+  let photos = [];
+  try { photos = await readPhotosAsDataUrls(); } catch (_) { photos = []; }
+  try {
+    await api('/api/bookings', {
+      method: 'POST',
+      body: JSON.stringify({ service, date, problem, photos })
+    });
+    document.getElementById('bookSuccess').style.display = 'block';
+    document.getElementById('bookForm').reset();
+    const prev = document.getElementById('photoPreview');
+    if (prev) prev.innerHTML = '';
+    fillBookServiceOptions();
+    loadDashboard();
+  } catch (ex) {
+    alert(ex.message || 'Booking failed');
+  }
+  return false;
+}
+
+async function handleReset(e) {
+  e.preventDefault();
+  const email = document.getElementById('resetEmail').value.trim().toLowerCase();
+  const password = document.getElementById('resetPw').value;
+  const password2 = document.getElementById('resetPw2').value;
+  const err = document.getElementById('resetError');
+  const ok = document.getElementById('resetSuccess');
+  err.style.display = 'none';
+  ok.style.display = 'none';
+  if (password !== password2) {
+    err.style.display = 'block'; err.textContent = 'Passwords do not match.'; return;
+  }
+  if (!validPassword(password)) {
+    err.style.display = 'block';
+    err.textContent = 'Password must be at least 8 characters and include letters, numbers, and a special character.';
+    return;
+  }
+  try {
+    const data = await api('/api/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    });
+    ok.style.display = 'block';
+    ok.textContent = data.message || 'Password updated.';
+    setTimeout(() => showPage('login'), 2000);
+  } catch (ex) {
+    err.style.display = 'block';
+    err.textContent = ex.message || 'Reset failed';
+  }
+}
+
+async function handleAdminLogin(e) {
+  e.preventDefault();
+  const email = (document.getElementById('adminEmail').value || '').trim().toLowerCase();
+  const password = document.getElementById('adminPassword').value || '';
+  const err = document.getElementById('adminError');
+  try {
+    err.style.display = 'none';
+    const data = await api('/api/admin/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password })
+    });
+    setToken(data.token);
+    setCurrentUser(data.user);
+    showPage('admin');
+  } catch (ex) {
+    err.style.display = 'block';
+    err.textContent = ex.message || 'Invalid admin credentials.';
+  }
+}
+
+function adminLogout() {
+  setToken(null);
+  setCurrentUser(null);
+  stopAdminRefresh();
+  showPage('admin-login');
+}
+
+async function loadAdmin() {
+  try {
+    const data = await api('/api/admin/members');
+    window._adminMembers = data.members || [];
+    const stats = data.stats || {};
+    document.getElementById('adminTotal').textContent = stats.total || 0;
+    document.getElementById('adminBooked').textContent = stats.withBookings || 0;
+    document.getElementById('adminPending').textContent = (stats.pending || 0) + ' members · ' + (stats.pendingBookings || 0) + ' bookings';
+    const approvedEl = document.getElementById('adminApproved');
+    if (approvedEl) {
+      approvedEl.textContent = (window._adminMembers.filter(m => m.status === 'approved').length) || 0;
+    }
+    renderAdminCalendar(window._adminMembers);
+    applyAdminFilters();
+  } catch (ex) {
+    if (ex.status === 401 || ex.status === 403) adminLogout();
+  }
+}
+
+function renderAdminCalendar(users) {
+  const el = document.getElementById('adminCalendar');
+  if (!el) return;
+  const all = [];
+  for (const u of users) {
+    for (const b of (u.bookings || [])) {
+      all.push({ member: u.name, email: u.email, phone: u.phone, userId: u._id, ...b });
+    }
+  }
+  if (!all.length) {
+    el.innerHTML = '<p style="margin:0;color:#9ca3af;">No appointments yet. New requests appear here automatically.</p>';
+    return;
+  }
+  all.sort((a, b) => {
+    const da = a.date || a.createdAt || '';
+    const db = b.date || b.createdAt || '';
+    return String(da).localeCompare(String(db));
+  });
+  el.innerHTML = '<div style="overflow-x:auto;"><table style="width:100%;border-collapse:collapse;font-size:0.85rem;">' +
+    '<thead><tr style="text-align:left;border-bottom:1px solid #e5e7eb;">' +
+    '<th style="padding:0.4rem;">Date</th><th style="padding:0.4rem;">Member</th><th style="padding:0.4rem;">Service</th><th style="padding:0.4rem;">Status</th><th style="padding:0.4rem;">Action</th></tr></thead><tbody>' +
+    all.map(b => {
+      const st = b.status || 'Pending';
+      const badge = st === 'Approved' || st === 'Done' ? 'badge-done' : (st === 'Rejected' || st === 'Cancelled' ? 'badge-rejected' : 'badge-pending');
+      const dateLabel = b.date ? String(b.date).slice(0, 10) : '(no date)';
+      return `<tr style="border-bottom:1px solid #f1f5f9;">
+        <td style="padding:0.45rem;white-space:nowrap;">${dateLabel}</td>
+        <td style="padding:0.45rem;"><strong>${b.member || ''}</strong><br><span style="color:#6b7280;font-size:0.78rem;">${b.email || ''}</span></td>
+        <td style="padding:0.45rem;">${b.service || ''}</td>
+        <td style="padding:0.45rem;"><span class="badge ${badge}">${st === 'Approved' ? 'Approved — go-ahead' : st}</span></td>
+        <td style="padding:0.45rem;">
+          <select class="status-select" onchange="setBookingStatus('${b.userId}', '${b._id}', this.value)">
+            <option value="Pending" ${st==='Pending'?'selected':''}>Pending</option>
+            <option value="Approved" ${st==='Approved'?'selected':''}>Approved — go-ahead</option>
+            <option value="Rejected" ${st==='Rejected'?'selected':''}>Rejected</option>
+            <option value="Done" ${st==='Done'?'selected':''}>Done</option>
+            <option value="Cancelled" ${st==='Cancelled'?'selected':''}>Cancelled</option>
+          </select>
+        </td>
+      </tr>`;
+    }).join('') + '</tbody></table></div>';
+}
+
+function applyAdminFilters() {
+  const users = window._adminMembers || [];
+  const q = (document.getElementById('adminSearch')?.value || '').trim().toLowerCase();
+  const st = document.getElementById('adminStatusFilter')?.value || 'all';
+  const bk = document.getElementById('adminBookingFilter')?.value || 'all';
+  const filtered = users.filter(u => {
+    if (st !== 'all' && u.status !== st) return false;
+    const books = u.bookings || [];
+    if (bk === 'has' && !books.length) return false;
+    if (bk === 'none' && books.length) return false;
+    if (bk === 'pending' && !books.some(b => b.status === 'Pending')) return false;
+    if (q) {
+      const hay = [u.name, u.email, u.phone, u.country, u.state, u.adminNotes].join(' ').toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+  renderAdminMembersTable(filtered);
+}
+
+function renderAdminMembersTable(users) {
+  const body = document.getElementById('adminBody');
+  if (!users.length) {
+    body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:#9ca3af;padding:1.5rem;">No members match your filters.</td></tr>';
+    return;
+  }
+  body.innerHTML = users.map(u => {
+    const loc = u.country === 'United States' && u.state ? u.state + ', USA' : (u.country || '—');
+    const books = u.bookings || [];
+    const statusBadge = u.status === 'approved'
+      ? '<span class="badge badge-done">Approved</span>'
+      : u.status === 'suspended'
+      ? '<span class="badge badge-rejected">Suspended</span>'
+      : '<span class="badge badge-pending">Pending approval</span>';
+    const problems = books.length
+      ? books.map((b) => {
+          const bid = b._id;
+          return `<div style="margin-bottom:0.55rem;padding-bottom:0.35rem;border-bottom:1px solid #f1f5f9;">
+            <strong>${b.service}</strong> <span class="badge ${b.status==='Approved'||b.status==='Done'?'badge-done':b.status==='Rejected'||b.status==='Cancelled'?'badge-rejected':'badge-pending'}">${b.status==='Approved'?'Approved — go-ahead':b.status}</span><br>
+            <span style="color:#64748b;font-size:0.8rem;">${(b.problem||'').slice(0,100)}</span><br>
+            ${(b.photos&&b.photos.length)?b.photos.map(ph=>`<img src="${ph.dataUrl}" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:6px;margin:4px 4px 0 0;">`).join('') : ''}
+            ${b.adminNote ? `<div style="font-size:0.78rem;color:#0f766e;margin-top:2px;">Note: ${b.adminNote}</div>` : ''}
+            <select class="status-select" onchange="setBookingStatus('${u._id}', '${bid}', this.value)">
+              <option value="Pending" ${b.status==='Pending'?'selected':''}>Pending</option>
+              <option value="Approved" ${b.status==='Approved'?'selected':''}>Approved — client go-ahead</option>
+              <option value="Rejected" ${b.status==='Rejected'?'selected':''}>Rejected</option>
+              <option value="Done" ${b.status==='Done'?'selected':''}>Done</option>
+              <option value="Cancelled" ${b.status==='Cancelled'?'selected':''}>Cancelled</option>
+            </select>
+            <input type="text" class="admin-note" style="margin-top:4px;min-height:28px;" placeholder="Note visible to client…"
+              value="${(b.adminNote||'').replace(/"/g,'&quot;')}"
+              onchange="setBookingNote('${u._id}', '${bid}', this.value, '${b.status}')">
+          </div>`;
+        }).join('')
+      : '<span style="color:#9ca3af;">No bookings</span>';
+    return `<tr>
+      <td>
+        <strong>${u.name}</strong><br>
+        <span style="font-size:0.78rem;color:#6b7280;">${u.email}</span><br>
+        ${statusBadge}
+        <div style="margin-top:0.4rem;display:flex;gap:4px;flex-wrap:wrap;">
+          ${u.status !== 'approved' ? `<button class="btn btn-outline btn-sm" onclick="setMemberStatus('${u._id}','approved')">✓ Approve member</button>` : ''}
+          ${u.status !== 'suspended' ? `<button class="btn btn-outline btn-sm" onclick="setMemberStatus('${u._id}','suspended')">Suspend</button>` : ''}
+          ${u.status === 'suspended' ? `<button class="btn btn-outline btn-sm" onclick="setMemberStatus('${u._id}','approved')">Re-approve</button>` : ''}
+        </div>
+      </td>
+      <td>${u.phone || '—'}</td>
+      <td>${loc}</td>
+      <td style="font-size:0.78rem;">${statusBadge}<div style="color:#6b7280;margin-top:4px;">Password: secure (hashed)</div></td>
+      <td style="max-width:320px;">${problems}
+        <div style="margin-top:0.45rem;"><label style="font-size:0.72rem;font-weight:600;">Admin notes (internal)</label>
+        <textarea class="admin-note" onblur="saveAdminNote('${u._id}', this.value)">${(u.adminNotes||'').replace(/</g,'&lt;')}</textarea></div>
+      </td>
+      <td style="font-size:0.78rem;color:#6b7280;">${u.createdAt ? new Date(u.createdAt).toLocaleString() : '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+
+async function setMemberStatus(id, status) {
+  try {
+    await api('/api/admin/members/' + id + '/status', {
+      method: 'PATCH',
+      body: JSON.stringify({ status })
+    });
+    loadAdmin();
+  } catch (ex) {
+    alert(ex.message || 'Update failed');
+  }
+}
+
+async function saveAdminNote(id, notes) {
+  try {
+    await api('/api/admin/members/' + id + '/notes', {
+      method: 'PATCH',
+      body: JSON.stringify({ notes })
+    });
+  } catch (_) {}
+}
+
+async function setBookingStatus(userId, bookingId, status) {
+  try {
+    await api('/api/admin/bookings/' + userId + '/' + bookingId + '/status', {
+      method: 'PATCH',
+      body: JSON.stringify({ status })
+    });
+    loadAdmin();
+  } catch (ex) {
+    alert(ex.message || 'Update failed');
+  }
+}
+
+async function setBookingNote(userId, bookingId, adminNote, currentStatus) {
+  try {
+    await api('/api/admin/bookings/' + userId + '/' + bookingId + '/status', {
+      method: 'PATCH',
+      body: JSON.stringify({ status: currentStatus || 'Pending', adminNote })
+    });
+  } catch (_) {}
+}
+
+function startAdminRefresh() {
+  stopAdminRefresh();
+  adminTimer = setInterval(loadAdmin, 10000);
+}
+function stopAdminRefresh() {
+  if (adminTimer) { clearInterval(adminTimer); adminTimer = null; }
+}
+function startMemberRefresh() {
+  stopMemberRefresh();
+  memberTimer = setInterval(() => {
+    if (document.getElementById('page-dashboard')?.classList.contains('active')) loadDashboard();
+  }, 10000);
+}
+function stopMemberRefresh() {
+  if (memberTimer) { clearInterval(memberTimer); memberTimer = null; }
+}
+
+async function exportMembersCSV() {
+  try {
+    const token = getToken();
+    const res = await fetch(API + '/api/admin/export', {
+      headers: { Authorization: 'Bearer ' + token }
+    });
+    if (!res.ok) throw new Error('Export failed');
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'rebel-ink-members.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  } catch (ex) {
+    alert(ex.message || 'Export failed');
+  }
+}
+
+function renderTestimonials() {
+  const el = document.getElementById('landingTestimonials');
+  if (!el || typeof TESTIMONIALS === 'undefined') return;
+  el.innerHTML = TESTIMONIALS.map(t => `
+    <div class="testimonial-card">
+      <div class="stars-sm">${'★'.repeat(t.stars)}</div>
+      <div class="quote">"${t.quote}"</div>
+      <div class="who">${t.who}</div>
+      <div class="where">${t.where}</div>
+    </div>
+  `).join('');
+}
+
+function goBookFromDetail() {
+  const user = getCurrentUser();
+  if (!user) { showPage('register'); return; }
+  if (user.status && user.status !== 'approved' && user.role !== 'admin') {
+    alert('Your account is pending admin approval. You can book once approved.');
+    return;
+  }
+  showPage('dashboard');
+  setTimeout(() => {
+    const s = SERVICES.find(x => x.id === currentServiceId);
+    const sel = document.getElementById('bookService');
+    if (sel && s) {
+      for (const o of sel.options) {
+        if (o.value === s.name || o.text === s.name) { sel.value = o.value; break; }
+      }
+      if (!sel.value) sel.value = s.name;
+    }
+    document.getElementById('bookForm')?.scrollIntoView({ behavior: 'smooth' });
+  }, 150);
+}
+
+function goBookFromTier() {
+  const user = getCurrentUser();
+  if (!user) { showPage('register'); return; }
+  if (user.status && user.status !== 'approved' && user.role !== 'admin') {
+    alert('Your account is pending admin approval. You can book once approved.');
+    return;
+  }
+  showPage('dashboard');
+  setTimeout(() => {
+    const s = SERVICES.find(x => x.id === currentServiceId);
+    const sel = document.getElementById('bookService');
+    if (sel && s) {
+      for (const o of sel.options) {
+        if (o.value === s.name || o.text.indexOf(s.name) === 0) { sel.value = o.value; break; }
+      }
+      if (!sel.value) sel.value = s.name;
+    }
+    const problem = document.getElementById('bookProblem');
+    if (problem && currentTier) {
+      problem.value = 'Interested in: ' + currentTier.name + ' (' + currentTier.price + '). ';
+    }
+    document.getElementById('bookForm')?.scrollIntoView({ behavior: 'smooth' });
+  }, 150);
+}
+
+(function init() {
+  const style = document.createElement('style');
+  style.textContent = `
+    .badge-approved, .badge-done { background: #d1fae5; color: #065f46; }
+    .badge-rejected { background: #fee2e2; color: #991b1b; }
+  `;
+  document.head.appendChild(style);
+
+  renderServiceCards('landingServices');
+  renderTestimonials();
+  if (typeof initA11y === 'function') initA11y();
+  if (typeof setupPhotoPreview === 'function') setupPhotoPreview();
+  if (typeof setLang === 'function') setLang(typeof currentLang !== 'undefined' ? currentLang : 'en');
+  try {
+    const u = getCurrentUser();
+    if (u && u.email && getToken()) {
+      if (u.role === 'admin') showPage('admin');
+      else showPage('dashboard');
+    }
+  } catch(e) {}
+})();
+</script>
+
+<!-- Accessibility -->
+<div class="a11y-bar" role="toolbar" aria-label="Accessibility">
+  <button type="button" id="a11yTextBtn" onclick="toggleLargeText()" title="Larger text">A+ Larger text</button>
+</div>
+
+<!-- Live chat placeholder -->
+<div class="chat-widget">
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-head">
+      <span>Chat with Rebel Ink</span>
+      <button type="button" onclick="toggleChat()" aria-label="Close">×</button>
+    </div>
+    <div class="chat-body">
+      <p><strong>Hi — how can we help?</strong></p>
+      <p>This is a demo chat panel. Connect Tawk.to, Intercom, or WhatsApp for live replies. For now use call or WhatsApp.</p>
+      <p style="font-size:0.8rem;">Bookings: reply typically within 1–2 business days.</p>
+    </div>
+    <div class="chat-actions">
+      <a class="btn btn-primary btn-block" href="https://wa.me/14025175821?text=Hi%20Rebel%20Ink%2C%20I%20have%20a%20question." target="_blank">Continue on WhatsApp</a>
+      <a class="btn btn-outline btn-block" href="tel:+14025175821">Call +1 (402) 517-5821</a>
+      <button type="button" class="btn btn-outline btn-block" onclick="showPage('register')">Create account</button>
+    </div>
+  </div>
+  <button type="button" class="chat-toggle" onclick="toggleChat()" aria-label="Open chat">💬 Chat with us</button>
+</div>
+
+</body>
+</html>

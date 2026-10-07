@@ -1,0 +1,53 @@
+REBEL INK — FULL PERSISTENT DEPLOY (WEB SERVICE + POSTGRES)
+===========================================================
+
+WHY POSTGRES?
+  Memory-only storage is wiped when the free service sleeps.
+  Postgres keeps every member, approval, and appointment forever
+  (until you delete the database). Data is visible from any device.
+
+STEPS
+-----
+1. Push this folder to GitHub
+   (server.js + package.json + public/ at the repo ROOT).
+
+2. Render → New → PostgreSQL → Free → Create.
+   Wait until Available.
+   Copy the "Internal Database URL".
+
+3. Render → New → Web Service
+   - Build:  npm install
+   - Start:  npm start
+   - Free plan
+
+4. Environment variables (REQUIRED):
+   DATABASE_URL        = (paste Internal Database URL)
+   JWT_SECRET          = (openssl rand -hex 32)
+   ADMIN_SETUP_TOKEN   = (openssl rand -hex 24)
+
+5. Deploy.
+
+6. Logs → find:
+   FIRST ADMIN SETUP REQUIRED. Open /admin-setup?token=...
+   Open that URL → create YOUR admin email/password.
+   (No default admin login exists.)
+
+7. Test:
+   - Register a client from another browser/phone
+   - Admin panel refreshes every 10s → approve the member
+   - Client refreshes every 10s → can book
+   - Admin approves appointment → client sees "approved"
+
+FEATURES INCLUDED
+-----------------
+✓ Persistent member storage (all devices)
+✓ Admin approve / suspend members
+✓ Admin notes on members
+✓ Appointment requests with photos
+✓ Admin approve / reject / done appointments
+✓ Client sees live status every 10 seconds
+✓ Admin panel auto-refresh every 10 seconds
+✓ CSV export of members + appointments
+✓ No hard-coded admin credentials
+✓ Bcrypt password hashing
+✓ Rate limiting on login/setup
